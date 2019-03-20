@@ -7,9 +7,13 @@ Rails.application.routes.draw do
   # get 'books/edit/:id', to: 'books#edit'
   # put 'books/update/:id', to: 'books#update'
   # delete 'books/destroy/:id', to: 'books#destroy'
- 
+  
+  
   # set otomatis
-  resources :books
+  resources :books do
+    get :active, on: :collection
+    patch :toggle, on: :member
+  end
 
   # set only 
   # resources :books, only: [:index, :show]

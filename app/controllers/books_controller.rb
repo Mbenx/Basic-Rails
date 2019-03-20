@@ -21,15 +21,15 @@ class BooksController < ApplicationController
     # @book = Book.new(params[:book])
 
     @book = Book.new(book_params)
-    @book.save
-    render plain: "Berhasil menyimpan"
-    # if @book.save
-    #   flash[:success] = "Object successfully created"
-    #   redirect_to @book
-    # else  
-    #   flash[:error] = "Something went wrong"
-    #   render 'new'
-    # end
+    # @book.save
+    # render plain: "Berhasil menyimpan"
+    if @book.save
+      flash[:success] = "Object successfully created"
+      redirect_to @book
+    else  
+      flash[:error] = "Something went wrong"
+      render 'new'
+    end
   end
 
   def edit
@@ -57,6 +57,19 @@ class BooksController < ApplicationController
       flash[:error] = 'Something went wrong'
       redirect_to books_url
     end
+  end
+
+  def active
+
+    @books = Book.where(status: 1)
+    render 'index'
+  end
+  
+  def toggle
+    @book = Book.find(params[:id])
+    @book.status = 0
+    @book.save
+    redirect_to books_url
   end
   
   
