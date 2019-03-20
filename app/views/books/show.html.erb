@@ -1,0 +1,13 @@
+<%= link_to 'Books Home', controller: 'books' %>
+<hr>
+<div>Judul : <%= @book.title %> </div>
+<div>Jumlah Halaman :  <%= @book.page %></div>
+<div>Description 
+  <p><%= @book.description %></p>
+</div>
+
+<hr>
+<%= link_to 'Back', books_path %>
+
+
+
